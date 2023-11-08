@@ -1,0 +1,441 @@
+\documentclass[a4paper,12pt,twoside]{hmcpset}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage{lmodern} % math, rm, ss, tt
+\usepackage[T1]{fontenc} 
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Spring 2019}
+\chead{Section 7}
+\lhead{\vspace{5mm} Math 147 Topology}
+\rfoot{Page \thepage}
+\linespread{1.3}
+ 
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{2pt}
+
+\graphicspath{ {./figures_theorems/} } 
+
+% info for header block in upper right hand corner
+\begin{document}
+\section*{Chapter 7\\ Compactness: The Next Best Thing To Being Finite}
+
+\begin{problem}[Theorem 7.1] Let $X$ be a finite topological space.
+    Then $X$ is compact.
+\end{problem}
+
+\begin{proof}
+    Consider an open cover $\mathcal{C}$ of the set $X$. Since
+    $\mathcal{C}$ covers $X$, we know that for each $p \in X$ there
+    exists an open set $U_p \in \mathcal{C}$ such that $p \in U_p$.
+    Since $X$ is finite, there are finitely many open sets $U_p \in
+    \mathcal{C}$ such that $p \in U_p$. Therefore, we see that $\{U_p
+    : p \in X\}$ is a finite subcover of $\mathcal{C}$, which shows
+    that $X$ is compact.
+\end{proof}
+
+\begin{problem}[Theorem 7.2] Let $C$ be a compact subset of
+    $\mathbb{R}_{\text{std}}$. Then $C$ has a maximum point, that is,
+    there is a point $m \in C$ such that for every $x \in C$, $x \le
+    m$.
+\end{problem}
+
+\begin{proof}
+    Let $\mathcal{C}$ be an open cover of the set. Then it must have
+    some finite subcover $\mathcal{C}'$. However, since the basic open
+    sets of $\mathbb{R}$ are balls, there must be a finite set of
+    basic open sets which cover $C$. However, every open set is of the
+    form $(x-\epsilon, x + \epsilon)$, where $x \in C$ and $\epsilon >
+    0$. Take max $x$ which appears in this finite open cover, and
+    observe that for all $c \in C$, $c \le x$. Thus $C$ must have a
+    maximum, as desired.
+\end{proof}  
+
+\begin{problem}[Theorem 7.3] If $X$ is a compact space, then every
+    infinite subset of $X$ has a limit point.
+\end{problem}
+
+\begin{proof}
+    Consider an infinite subset $A$ of $X$. Suppose that $A$ has no
+    limit points. Then for every $p \in X$, there exists an open set
+    $U_p$ such that $(U_p - \{p\})\cap A = \emptyset$. However, this
+    would imply that $\bigcup_{a \in A} U_a \subset X$, so that any
+    open cover would automatically have to be infinite. But this
+    contradicts the fact that $X$ is compact. Therefore, $A$ must have
+    a limit point in $X$.
+\end{proof}
+
+\begin{problem}[Corollay 7.4] If $X$ is compact and $E$ is a subset of
+    $X$ with no limit point, then $E$ is finite.
+\end{problem}
+
+\begin{proof}
+    Suppose $X$ is compact and a subset $E$ has no limit point in $X$.
+    Then for every $p \in X$, we know that there exists an open set
+    $U_p$  which contain $p$, $(U_p - \{p\})\cap E = \emptyset$. Then
+    again, $\bigcup_{p \in E} U_p \subset X$. Since every open cover
+    of $X$ must have a finite subcover, we know that there cannot be
+    an infinite number of open sets $U_p$ for $p \in E$, since we
+    could then never cover it with finitely many open sets. Thus
+    $\{U_p : p \in E\}$ has to be restricted to be finite, so that $E$
+    must be finite, as desired.
+\end{proof}
+
+\begin{problem}[Theorem 7.5] A space $X$ is compact if and only if
+    every collection of closed sets with the finite intersection
+    property has a non-empty intersection.
+\end{problem}
+
+\begin{proof}
+    Suppose $X$ is compact, and let $\mathcal{C}$ be a collection of
+    closed sets with the finite interscetion property. Suppose that
+    $\bigcap_{C \in \mathcal{C}} C \ne \{p\}$ for some $p \in X$; this
+    is a trivial case of the theorem. \\
+    Now let $p_1 \in C_1 \cap C_2$ for $C_1 \ne C_2$ and $C_1, C_2 \in
+    \mathcal{C}$. We can then construct a sequence of points $p_i$
+    such that 
+    $$
+    p_i \in C_1 \cap C_2 \cap \cdots \cap C_i \cap C_{i + 1}
+    $$ 
+    where $C_i, C_{i + 1} \in \mathcal{C}$ and $C_i \ne C_{i + 1}$ for
+    all $i \in \mathbb{N}.$ Since $\mathcal{C}$ has the finite
+    intersection property, we know for a fact that we can always find
+    a $p_i$ in the finite intersection. \\
+    \\
+    now if $\mathbb{C}$ has an empty intersection, then this implies
+    that this sequence of points $\{p_i : i \in \mathbb{N}\}$
+    converges to a point $p$ which is not contained in any $C \in
+    \mathbb{C}$. First of all, we know it will converge to some point
+    in $X$ by Theorem 7.3. Second of all, observe that if $p$ is the
+    limit of this sequence, then for every open set $U$ which contains
+    $p$, there exists a $N \in \mathbb{N}$ such that for $i > N$, $p_i
+    \in U$. Thus, in other words, if $U$ contains $p$, then 
+    $$
+    (U - \{p\})\cap C_i \ne \emptyset
+    $$
+    for $i \in \mathbb{N}$. Thus $p$ is a limit point for each $C_i$,
+    and since each $C_i$ is closed, $p \in C_i$ for all $i \in
+    \mathbb{N}$. \\
+    \\
+    Second attempt: \\
+    First we'll prove the forward direction. Suppose that $X$ is a
+    compact space, and let $\mathcal{C}$ be a collection of closed
+    sets in $X$ with the finite intersection property. For the sake of
+    contradiction, suppose that $\bigcap_{C \in \mathcal{C}} C =
+    \emptyset.$ Then observe that $\{C^c : C \in \mathcal{C}\}$ (where
+    $^c$ denotes the complement) is an open cover of $X$. Since this
+    set is an open cover, it must have a finite subcover, which means
+    that there exist sets $C_1^c, C_2^c \dots C_n^c$ such that 
+    $$
+    \bigcup_{i = 1}^n C_i^c = X.
+    $$  
+    However, taking the complement of this leads to 
+    $$
+    \bigcap_{i = 1}^n C_i = \emptyset
+    $$ 
+    which contradicts the finite interscetion propety of
+    $\mathcal{C}$. Thus we have a contradiction, which implies that
+    there must exist a $\bigcap_{C \in \mathcal{C}} C \ne \emptyset$
+    as desired. \\
+    \\
+    Now we prove the other direction. Suppose that for every
+    collection $\mathcal{C}$ of closed sets in $X$ with the finite
+    interesection property, we have that 
+    $$
+    \bigcap_{C \in \mathcal{C}} C \ne \emptyset.
+    $$
+    Now let $\mathcal{U}$ be an open cover of $X$. Suppose for the
+    sake of contradiction that this does not have a finite subcover.
+    Observe that the set $\{U^c : U \in \mathcal{U}\}$ is a collection
+    of closed subsets in $X$ with the finite intersection property,
+    since each $U^c$ is a closed set which is not disjoint with any
+    other set. Since we know that every collection of closed sets in
+    $X$ with the finite interscetion property has a nonempty
+    interesection, we can conclude that
+    $$
+    \bigcap_{U \in \mathcal{U}} U^c \ne \emptyset 
+    \implies \bigcup_{U \in \mathcal{U}} U \ne X.
+    $$ 
+    However, the last equation contradicts the fact that $U$ was an
+    open cover of $X$. Thus we have that every open cover must have a
+    finite subcover, proving that $X$ is compact as desired,
+    completing the proof.
+\end{proof}
+
+
+\begin{problem}[Theorem 7.6] A space $X$ is compact if and only if for
+    any open set $U$ in $X$ and any collection of closed sets
+    $\{K_\alpha\}_{\alpha \in \lambda}$ such that $\cap_{\alpha \in
+    \lambda} K_\alpha \subset U$, there exist a finite number of
+    $K_\alpha$'s whose interesection lies in $U$.
+\end{problem}
+
+\begin{proof}
+    First we'll prove the forward direction. Suppose $X$ is compact
+    and that $\cap_{\alpha \in \lambda_1} K_\alpha \subset U$ for some
+    index $\lambda_1$. Observe that 
+    $$
+    U^c \subset \bigcup_{\alpha \in \lambda} K_\alpha^c 
+    $$
+    so that 
+    $$
+    \bigcup_{\alpha \in \lambda} K^c \cup U
+    $$
+    is an open cover of $X$. Observe that this must have a finite
+    subcover, so that $\lambda_1$ can at least be finite. Thus there
+    can be a finite number of $K_\alpha$'s, given by $\{K_1, K_2,
+    \dots, K_n\}$ such that 
+    $$
+    \bigcap_{i = 1}^n K_i \subset U 
+    $$
+    which proves this direction. \\
+    \\
+    Now we'll prove the other direction. Suppose that for every $U
+    \subset X$ and any collection of closed sets $\{K_\alpha\}_{\alpha
+    \in \lambda}$ such that $\bigcap_{\alpha \in \lambda} K_\alpha
+    \subset U$, there exist a finite number of $K_\alpha$'s such that
+    their intersection lies in $U$. \\
+    Now suppose that $\mathcal{U} = \{U_\alpha : \alpha \in \lambda\}$
+    is an open cover of $X$. Then observe that the set
+    $\{U^c_\alpha\}_{\alpha \in \lambda}$ is a collection of closed
+    sets such that $\bigcap_{\alpha \in \lambda} U^c_\alpha \subset
+    \emptyset.$ By assumption, there must exist a finite number of
+    $U^c_\alpha$'s such that their intersection lies in $\emptyset$.
+    Call these $U_\alpha$'s $U^c_1, U^c_2, \dots , U^c_n$. Then 
+    $$
+    \bigcap_{i = 1}^n U^c_i \subset \emptyset \implies \bigcap_{i = 1}^n U^c_i = \emptyset \implies \bigcup_{i = 1}^n U_i = X
+    $$
+    which shows that $\mathcal{U}$ must always have a finite subcover.
+    Therefore, the space is compact as desired.
+\end{proof}
+
+\begin{exercise}[Exercise 7.7]
+If $A$ and $B$ are compact subsets of $X$, then $A \cup B$ is compact.
+Suggest and prove a generalization. 
+\end{exercise}
+
+\begin{solution}
+Suppose $\mathcal{W}$ is an open cover of $A \cup B$. Then observe
+that $\mathcal{W}$ is a cover of both $A$ and $B$, and since $A$ and
+$B$ are compact, there exist finite subcovers of $\mathcal{W}$,
+denoted $\mathcal{W}_A$ and $\mathcal{W}_B$, such that $A \subset
+\mathcal{W}_A$
+and $B \subset \mathcal{W}_B$. Now observe that
+$\mathcal{W}_A \cup \mathcal{W}_B$ is a finite subcover of
+$\mathcal{W}$, so that every open cover of $A \cup B$ has a finite
+subcover. Therefore $A \cup B$ is compact, as desired. \\
+\\
+This can be extended to finitely many unions of compact sets. Suppose
+that $A_1, A_2, \dots , A_n$ are compact. Then $A_1 \cup A_2 \cup
+\dots A_n$ is compact. This is because any open cover $\mathcal{W}$ of
+$A_1 \cup A_2 \cup \dots A_n$ is also an open cover for each $A_1,
+\dots, A_n$, so there are finite subcovers $\mathcal{W}_{A_i}$ such
+that $\mathcal{W}_{A_i}$ covers $A_i$ for $i = 1, 2, \dots, n$.
+Therefore, $\mathcal{W}_{A_1} \cup \dots \cup \mathcal{W}_{A_n}$ is a
+finite subcover of $\mathcal{W}$ containing $A_1 \cup \dots \cup A_n$,
+so that $A_1 \cup \dots \cup A_n$ is compact. However, this cannot be
+extended to infinitely many unions of compact sets since unioning
+infinitely many finite subcovers will not yield a finite subcover.
+\end{solution}
+
+\begin{problem}[Theorem 7.8] Let $A$ be a closed subspace of a compact
+    space. Then $A$ is compact. 
+\end{problem}
+
+\begin{proof}
+    Let $X$ be compact and $A$ a closed subspace of $X$. Then any
+    closed set in $A$ can be
+    expressed as $D \cap A$, where $D$ is closed in $X$. Since $X$ is
+    comapct, by Theorem
+    7.5, any
+    collection of closed sets in $X$ with the finite intersection
+    property has a nonempty intersection. But closed sets in $A$ are
+    closed sets in $X$, so that any collection of closed sets in $A$ with the
+    finite intersection property have a nonempty interesection, which
+    proves that $A$ is a compact set. Therefore, $A$ is compact. 
+\end{proof}
+
+\begin{problem}[Theorem 7.9] Let $A$ be a compact subspace of a
+    Hausdorff space $X$. Then $A$ is closed.
+\end{problem}
+ 
+\begin{proof}
+    Let $q \in X - A.$ Since $X$ is Hausdorff, for any $p \in A$,
+    there exist disjoint open sets $U_p$ and $V_p$ such that $p \in
+    U_p$ and $q \in V_q$. Now observe that the set $\{U_p | p \in A\}$
+    is an open cover of $A$, where each member corresponds to a
+    disjoint open set $V_p$ of the point $q$. Since $A$ is a compact
+    set, we know that the set must have a finite subcover; denote it
+    as $\{U_{p_1}, U_{p_2}, \dots, U_{p_n}\}$. Then the set
+    $\bigcap_{i = 1}^n V_{p_i}$ is a an open set containing $q$, (open
+    because the interesection is finite) which is disjoint from $A$.
+    Since this must hold for all $q \in X - A$, this shows that $X -
+    A$ is an open set. Therefore, $A$ is closed, as desired. 
+\end{proof}
+
+\begin{exercise}[Exercise 7.10]
+Construct an example of a compact subset of a
+topological space that is not closed. 
+\end{exercise}
+
+\begin{solution}
+On the discrete topology, an finite set is an open set, although as we
+saw from Theorem 7.1 any finite set is also a compact set. 
+\end{solution}
+
+\begin{exercise}[Exercise 7.11]
+Must the intersection of two compact sets be compact? Add hypothesis,
+if necessary. Extend any theorems you discover, if possible. 
+\end{exercise}
+
+\begin{problem}[Theorem 7.12] Every compact, Hausdorff space is
+    normal.
+\end{problem}
+
+\begin{proof}
+    First we can show that $X$ is regular. Suppose $A$ is closed and
+    consider any $p \notin A$. Then observe that, since $X$ is
+    Hausdorff, for each $a \in A$, there are disjoint open sets $U_a$
+    and $V_a$ such that $a \in U_a$ and $p \in U_a$. Then 
+    $$
+    U = \{U_a : a \in A\}
+    $$ 
+    is an open cover of $A$, and since $A$ is closed Theorem 7.8
+    guarantees that $A$ is compact, and therefore there is a finite
+    subcover 
+    $$
+    U' = \{U_a : a \in F\}
+    $$
+    where $F$ is a finite subset of $A$. Therefore, the set $V =
+    \bigcap_{a \in F}V_a$ is an open set containing $p$ but is
+    entirely disjoint from all sets in $U'$ by construction. Since $A$
+    and $p \notin A$ were arbitrary, and we contained them in disjoint
+    open sets, then we have that $X$ is regular. \\
+    \\
+    Now let $A$ be closed and $U$ be an open set containing $A$. Then
+    note that for each $a \in A$ that $a \in B_a \subset U$ where
+    $B_a$ is some basic open set. Thus $\{B_a : a \in A\}$ is an open
+    cover of $A$. By compactness of $A$, there must exist a finite
+    subcover, given by $\{B_a : a \in F\}$ where $F$ is a finite
+    subset of $A$. \\
+    \\
+    By regularity, we know that for each $a \in B_a$ there exists an
+    open set $V_a$ such that $a \in V_a$ and $\overline{V_a}\subset
+    B_a$. Therefore, we see that $V = \bigcap\limits_{a \in F} V_a$ is
+    an open set containing $A$ and 
+    $$
+    \overline{V} \subset \bigcap\limits_{a \in F}\overline{V_a} \subset U.
+    $$     
+    Thus we have contained $A$ in an open set $V$ such that $A \subset
+    V$ and $\overline{V} \subset A$. By Theorem 5.9, we can conclude
+    that $X$ is normal, as desired.
+\end{proof}
+
+\begin{problem}[Theorem 7.13] Let $\mathcal{B}$ be a basis for a space
+    $X$. Then $X$ is compact if and only if every cover of $X$ by
+    basic open sets in $\mathcal{B}$ has a finite subcover.
+\end{problem}
+
+
+\begin{proof}
+    Suppose that $X$ is compact and has a basis $\mathcal{B}$. Suppose
+    that we cover $X$ by basic open sets $B_{\alpha \in \lambda}$ such
+    that $B_\alpha \in \mathcal{B}$ for all $\alpha \in \lambda$. Then
+    because $X$ is compact, there exsits a finite subcover, which we
+    can express as $\{B_{\alpha} : \alpha \in \lambda'\}$ where
+    $\lambda'$ is a countable index. Thus we see that every cover of
+    $X$ by basic open sets in $B$ has a finite subcover. \\
+    \\
+    Now we prove the other direction. Suppose that every cover of $X$
+    by basic open sets in $\mathcal{B}$ has a finite subcover. First
+    observe that for any open cover $\mathcal{U} = \{U_\alpha : \alpha
+    \in \lambda\}$, each $U_\alpha$ can be expressed as the union of
+    basis elements $\{B_{\gamma(\alpha)} : \gamma \in \lambda'\}$. If
+    $\mathcal{U}$ covers $X$, then the set of basic elements
+    $\{B_\gamma : \gamma \in \lambda\}$ will still contain $X$. But
+    since every cover of $X$ by basic open sets in the basis have a
+    finite subcover, there exists a finite set which covers $X$ which
+    we can denote as $\{B_\alpha : \alpha \in \lambda''\}$, where
+    $\lambda''$ is a finite index. Hence $\mathcal{U}$ has a finite
+    subcover, which implies that $X$ is a compact space. 
+\end{proof}
+
+\begin{problem}[Theorem 7.18] (The tube lemma) Let $X \times Y$ be a
+    product space with $Y$ compact. If $U$ is an open set of $X \times
+    Y$ containing the set $x_0 \times Y$, then there is some open set
+    $W$ in $X$ containing $x_0$ such that $U$ contains $W \times Y$
+    (called a "tube" around $x_0 \times Y$).
+\end{problem}
+
+\begin{proof}
+    Let $U$ be an open set in $X \times Y$ containing $x_0 \times Y$.
+    Suppose for each $y \in Y$ we contain $y$ in a set $U_y$ and
+    consider the product $U_x(y) \times U_y$, where $U_x(y) \times U_y
+    \subset U$. Then since $Y$ is compact, there exists a finite
+    subcover of $\{U_y | y \in Y\}$. Suppose this is given by
+    $\{U_{y_1}, \dots, U_{y_n} \}$. Then observe that 
+    $$x_0 \subset \left(\bigcap_{i = 1}^nU_{x(y_i)}\right) \times
+    \left(\bigcup_{i = 1}^n U_{y_n}\right) = \left(\bigcap_{i =
+    1}^nU_{x(y_i)}\right) \times Y \subset U \times Y$$ so that $W =
+    \bigcap_{i = 1}^nU_{x(y_i)}$ is an open set in $X$ such that $W
+    \times Y \subset U$, as desired.
+\end{proof}
+
+\begin{problem}[Theorem 7.19] Let $X$ and $Y$ be compact spaces. Then
+    $X \times Y$ is compact.
+\end{problem}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{problem}[Heine-Borel Theorem 7.20] 
+    Let $A$ be a subset of $\mathbb{R}^n$ with the standard topology.
+    Then $A$ is compact if and only if $A$ is closed and bounded.
+\end{problem}
+
+\begin{proof}
+    Let $A \subset \mathbb{R}$ and suppose $A$ is compact. Since $A
+    \subset \mathbb{R}^n$, we now that it must be the product of
+    compact sets $A_i \in \mathbb{R}$, $i = 1, 2, \dots n$. By Theorem
+    7.15, each such $A_i$ must be closed and bounded. Hence their
+    product, $A$, must also be closed and bounded, which proves this
+    direction.
+    \\
+    \\
+    Now suppose $A$ is closed and bounded. Then $A$ must be a product of
+    closed, bounded sets $[a_i, b_i]$ where $a_i \le b_i$ and 
+    $i = 1, 2, \dots, n$. However, by Theorem 7.14, each such set is
+    compact, and by Theorem 7.19 their product must also be compact.
+    Hence, $A$ is compact, which proves the theorem.
+    
+\end{proof}
+
+\begin{problem}[Alexander Subbasis Theorem 7.21]
+    Let $\mathcal{S}$ be a subbasis for a space $X$. Then $X$ is
+    cmpact if and only if every subbasic open cover has a finite
+    subcover. 
+\end{problem}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{problem}[Tychonoff's Theorem 7.22]
+    Any product of compacts sets is compact.
+\end{problem}
+
+\begin{proof}
+    
+\end{proof}
+
+
+
+\end{document}

@@ -1,0 +1,106 @@
+\documentclass[a4paper,12pt,twoside]{hmcpset}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage[margin=.6in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage{lmodern} % math, rm, ss, tt
+\usepackage[T1]{fontenc}
+\usepackage{relsize}
+%\newcommand*{\ms}[1]{\ensuremath{\mathscr{#1}}}
+\renewcommand{\labelenumi}{{\bf (\alph{enumi})}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Spring 2019}
+\lhead{\vspace{5mm} Math 147 Topology}
+\rfoot{Page \thepage}
+\chead{Section 10}
+ 
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{2pt}
+
+\graphicspath{ {./figures_theorems/} } 
+
+% info for header block in upper right hand corner
+\begin{document}
+\section*{Chapter 10\\ Metric Spaces: Getting some distance}
+
+\noindent
+\textbf{4/8/19 Q: Why does X have to be a metric space?}\\
+\begin{problem}[Lebesgue Number Theorem 10.24] 
+    Let $\{U_{\alpha}\}_{\alpha \in \lambda}$ be an open cover of a
+    compact set $A$ in a metric space $X$. Then there exists a
+    $\delta > 0$ such that for every point $p \in A$, $B(p, \delta)
+    \subset U_\alpha$ for some $\alpha$. This number $\delta$ is called a \textbf{Lebesgue
+    number} of the cover.
+\end{problem}
+
+\begin{proof} 
+    Since $A$ is compact, there exists a finite subcover
+    $\{U_{\alpha_1}, U_{\alpha_2}, \dots, U_{\alpha_n}\}$.
+    Now suppose for the sake of contradiction that there does not exists
+    such a  $\delta$.
+    Then in order for this to happen, we would need
+    that for every $B(p, \delta)$ containing $p$ there exists a member
+    of $U_{\alpha'} \in \{U_{\alpha_1}, U_{\alpha_2}, \dots,
+    U_{\alpha_n}\}$ such that 
+    $B(p, \delta) \not\subset U_{\alpha'}$. But since we can
+    theoretically propose an infinite number of $\delta$, we must have
+    an infinite number of such $U_\alpha'$s. 
+    \\
+    \\
+    However, we cannot do
+    this in the finite subcover, as it is finite. Therefore the
+    contrary must be true: there exists a $\delta$ such that for every
+    $p \in A$, $B(p, \delta) \subset U_\alpha$ for some $\alpha$. And
+    since this is true for the finite subcover, which is a subset of
+    the open cover, this is definitely true for the open cover.
+
+\end{proof}
+
+
+\begin{problem}[Theorem 10.25]
+    Let $\gamma : [0, 1] \to X$ be a \textbf{path}: a continuous map
+    from $[0, 1]$ into the space $X$. Given an open cover
+    $\{U_\alpha\}$ of $X$, show that $[0, 1]$ can be divided into $N$
+    intervals of the form $I_i = [\frac{i - 1}{N}, \frac{i}{N}]$ 
+    such that
+    each $\gamma(I_i)$ lies completely in one set of the cover.    
+\end{problem}
+
+\begin{proof}
+    If $\{U_\alpha\}_{\alpha \in \lambda}$ is an open cover of $X$,
+    then consider the set $\{\gamma^{-1}(U_\alpha)\}_{\alpha \in
+    \lambda}$. This will be an open cover of $\gamma$, since we know
+    $\gamma$ maps $[0, 1]$ into $X$. However, since $\gamma$ is
+    compact, we know by Lebesgue Number Theorem that there exists a
+    $\delta$ such that $p \in B(p, \delta) \subset
+    \gamma^{-1}(U_\alpha)$ for all $p \in [0, 1]$ where
+    $\gamma^{-1}(U_\alpha)$ is some set in the open cover containing
+    $p$.
+    \\
+    \\
+    Let $\dfrac{1}{N} < \delta$ where $N$ is a positive integer. Then
+    observe that the sequence of intervals 
+    \[
+        \left[\frac{i-1}{N}, \frac{i}{N}\right] \quad 1 \le i \le N  
+    \]
+    will each be contained in at least one member of
+    $\gamma^{-1}(U_\alpha)$. Thus 
+    \[
+        \left[\frac{i-1}{N}, \frac{i}{N}\right] \subset \gamma^{-1}(U_\alpha) 
+        \implies \gamma\left(\left[\frac{i-1}{N}, \frac{i}{N}\right]\right) \subset U_\alpha.  
+    \] 
+    Thus $[0, 1]$ can be divided into  $N$
+    intervals of the form $I_i = [\frac{i - 1}{N}, \frac{i}{N}]$ 
+    such that
+    each $\gamma(I_i)$ lies completely in one set of the cover in $X$,
+    which is what we set out to show.
+\end{proof}
+
+
+\end{document}

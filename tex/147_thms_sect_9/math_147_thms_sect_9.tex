@@ -1,0 +1,368 @@
+\documentclass[a4paper,12pt,twoside]{hmcpset}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage{lmodern} % math, rm, ss, tt
+\usepackage[T1]{fontenc}
+\usepackage{relsize}
+%\newcommand*{\ms}[1]{\ensuremath{\mathscr{#1}}}
+\renewcommand{\labelenumi}{{\bf (\alph{enumi})}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Spring 2019}
+\lhead{\vspace{5mm} Math 147 Topology}
+\rfoot{Page \thepage}
+\chead{Section 9}
+ 
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{2pt}
+
+\graphicspath{ {./figures_theorems/} } 
+
+% info for header block in upper right hand corner
+\begin{document}
+\section*{Chapter 9\\ Connectedness: When Things Don't Fall Into Pieces}
+
+\begin{problem}[Theorem 9.1]
+    The following are equivalent:
+    \begin{itemize}
+        \item[1.] $X$ is connected 
+        \item[2.] there is no continuous function $f: X \rightarrow
+        \mathbb{R}_{\text{std}}$ such that $f(X) = \{0, 1\}$
+        \item[3.] $X$ is not the union of two disjoint nonempty
+        separated sets 
+        \item[4.] $X$ is not the union of two disjoint nonempty
+        closed sets
+        \item[5.] the only subsets of $X$ that are both closed and
+        open in $X$ are both the empty set and $X$ itself
+        \item[6.] for every pair of points $p$ and $q$ and every open
+        cover $\{U_{\alpha}\}_{\alpha \in \lambda}$ of $X$ there
+        exists a finite number of $U_\alpha$'s, $\{U_{\alpha_1},
+        U_{\alpha_2}, \dots, U_{\alpha_n}\}$ such that $p \in
+        U_{\alpha_1}$, $q \in U_{\alpha_n}$ for each $i < n$, 
+        $U_{\alpha_i} \cap U_{\alpha_{i + 1}} \ne \emptyset$.   
+    \end{itemize}
+\end{problem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item[] ($\mathbf{1 \implies 2}$) Suppose $X$ is connected,
+        and for contradiction that there is a continuous function $f:
+        X \rightarrow \mathbb{R}_{\text{std}}$ such that $f(X) = \{0,
+        1\}$. However, this would imply that $f^{-1}(1)$ and
+        $f^{-1}(0)$ are (1) disjoint open sets in $X$ such that (2)
+        their union is $X$. However, that contradicts the fact that
+        $X$ is connected by definition. Therefore, there is no
+        continuous function $f:
+        X \rightarrow \mathbb{R}_{\text{std}}$ such that $f(X) = \{0,
+        1\}$.
+        \\
+        \\
+        ($\mathbf{2 \implies 1}$) Now if there is no continuous
+        function $f:
+        X \rightarrow \mathbb{R}_{\text{std}}$ such that $f(X) = \{0,
+        1\}$, then that means $X$ cannot be split into two disjoint
+        open sets whos union is $X$, which implies that $X$ is
+        connected.
+        \\
+        \\
+        ($\mathbf{1 \implies 3}$) Since $X$ is connected, it is not
+        the union of two nonempty disjoint open subsets of $X$.
+        However, suppose $A, B$ are two separated sets such that $A
+        \cup B = X$.
+        \\
+        \\
+        ($\mathbf{3 \implies 1}$) Suppose now that $X$ is not the
+        union of two disjoint nonempty separated sets. Then $X$ is not
+        union of two disjoint open sets, so that $X$ is connected. 
+        \\
+        \\
+        ($\mathbf{1 \implies 4}$) Suppose $X$ is connected, and for
+        contradiction that $X = A \cup B$ where $A$ and $B$ are
+        disjoint nonempty closed
+        sets. Then we can construct a continuous function from $f: X
+        \to \{0, 1\}$, where $f^{-1}(0) = A$ and $f^{-1}(1) = B$.
+        However, this contradictions the fact that $X$ is connected,
+        so that $X$ is no the union of two disjoint nonempty closed
+        sets. 
+        \\
+        \\
+        ($\mathbf{4 \implies 1}$) Suppose $X$ is not the union of two
+        disjoint nonempty closed sets. Then there is no continuous
+        function $f: X \to \{0, 1\}$ since $f^{-1}(0)$ and $f^{-1}(1)$
+        cannot be open or closed. Thus $X$ must be connected.
+        \\
+        \\
+        ($\mathbf{1 \implies 5}$) Suppose $X$ is connected. Suppose
+        there is a set such that $A \ne X$ and $A \ne \emptyset$ 
+        is open and closed. Then $A^c
+        \cup A = X$. However, that would mean $X$ is the union of two
+        disjoint non empty open sets, which is a contradiction. Thus
+        the only open and closed sets are $X$ and $\emptyset$.
+        \\
+        \\
+        ($\mathbf{5 \implies 1}$) Suppose the only open and closed
+        sets in $X$ are $X$ and $\emptyset.$ Suppose for contradiction
+        that $X$ is not connected, so that $X = A \cup B$ for two
+        disjoint nonempty open sets. Then $X^c = (A \cup B)^c = A^c
+        \cap B^c = \emptyset$. However, this is a contradiction since
+        their intersection must be nonempty. Therefore, $X$ is
+        connected. 
+
+        
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}[Exercise 9.2]
+\textbf{Exercise 9.2}
+Which of the following spaces are connected?
+\begin{enumerate}
+    \item[1.] $\mathbb{R}$ with the discrete topology?
+    \item[2.] $\mathbb{R}$ with the indiscrete topology?
+    \item[3.] $\mathbb{R}$ with the finite complement topology?
+    \item[4.] $\mathbb{R_\text{LL}}$?
+    \item[5.] $\mathbb{Q}$ as a subspace of $\mathbb{R}_{\text{std}}$?
+    \item[6.] $\mathbb{R} - \mathbb{Q}$ as a subspace of $\mathbb{R}_{\text{std}}$?      
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item[1.] Every subset of $\mathbb{R}$ is
+        open and closed. This violates Theorem 9.1(5) so that $\mathbb{R}$
+        is not connected under the discrete topology.
+    
+        \item[2.] The only sets which are open and closed are
+        $\mathbb{R}$ and $\emptyset$. Thus by Theorem 9.1(5) $\mathbb{R}$
+        is connected under the indiscrete topology.
+    
+        \item[3.] For contradiction suppose there is 
+        a set $U \subset \mathbb{R}$ which is open and closed
+        and not $\mathbb{R}$ or the emptyset.  
+    
+        Since $U$ is open, $U^c$ is finite. However $(U^c)^c = U$ is
+        infinite and hence $U^c$ is not an open set. But this contradicts
+        the assumption that $U$ was open and closed. Thus $\mathbb{R}$ is
+        connected on the finite complement topology. 
+    
+        \item[4.] Consider a basic open set $[a, b)$. Observe that 
+        \[
+            [a, b)^c = (-\infty, a) \cup [b, \infty)
+        \]  
+        which is the union of two open sets, and hence is open. Thus $[a,
+        b)$ is open and closed. By Theorem 9.1.5, we have that
+        $\mathbb{R}_{\text{LL}}$ is not connected.
+    
+        \item[5.] Observe that $(\mathbb{Q} \cap (-\infty, \pi))$ and
+        $(\mathbb{Q} \cap (\pi, \infty))$ are disjoint, separated sets in
+        the subspace $\mathbb{Q}$ and 
+        \[
+            (\mathbb{Q} \cap (-\infty, \pi)) \cap (\mathbb{Q} \cap (\pi, \infty))
+            = \mathbb{Q}.
+        \] 
+        Thus $\mathbb{Q}$ is not open as a subspace of $\mathbb{R}_{\text{std}}$.
+        
+        \item[6.] Observe that $(\mathbb{R} - \mathbb{Q}) \cap (-\infty,
+        0)$ and $(\mathbb{R} - \mathbb{Q}) \cap (0, \infty)$ are disjoint
+        separated sets and 
+        \[
+            ((\mathbb{R} - \mathbb{Q}) \cap (-\infty, 0)) \cup 
+            ((\mathbb{R} - \mathbb{Q}) \cap (0, \infty)) = \mathbb{R} - \mathbb{Q}.
+        \]   
+        Thus $\mathbb{R} - \mathbb{Q}$ is not connected.
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}[Theorem 9.3]
+    The space $\mathbb{R}_{\text{std}}$ is connected.
+\end{problem}
+
+\begin{proof}
+    The only closed and open sets in $\mathbb{R}_{\text{std}}$ are the
+    emptyset and $\mathbb{R}$ itself, so that by Theorem 9.1(5) we
+    can conclude that $\mathbb{R}_\text{std}$ is connected. 
+\end{proof}
+
+
+\begin{problem}[Theorem 9.4]
+    Let $A$ and $B$ be separated subsets of a space $X$. If $C$ is a
+    connected subset of $A \cup B$, then either $C \subset A$ or $C
+    \subset B$.
+\end{problem}
+
+\begin{proof}
+    Observe that if $C$ is a connected subset of $A \cup B$, where $A$
+    and $B$ are separated in $X$, then $C$ is not the union of two
+    disjoint open sets in the $A \cup B$ subspace topology. 
+    \\
+    \\
+    Suppose for the sake of contradiction that $C \subset A$ and $C
+    \subset B$. Then observe that 
+    \[
+       C \subset A \cap B = \emptyset   
+    \]
+    which is a contradiction since $C$ is nonempty. Thus it must be
+    that $C \subset A$ or $C \subset B$.
+
+\end{proof}
+
+\begin{problem}[Theorem 9.5]
+    Let $\{C_{\alpha}\}_{\alpha \in \lambda}$ be a collection of
+    connected subsets of $X$ and $E$ another connected subset of $X$
+    that for each $\alpha \in \lambda$, $E \cap C_{\alpha} \ne
+    \emptyset$. Then $\displaystyle E \cup (\bigcup\limits_{\alpha \in \lambda}
+    C_{\alpha})$ is connected.
+\end{problem}
+
+\begin{proof}
+    Suppose for the sake of contradicition that $E \cup
+    (\bigcup\limits_{\alpha \in \lambda}C_\alpha)$ is not connected. 
+    Then $E \cup (\bigcup\limits_{\alpha \in \lambda}C_\alpha) = A \cup B$
+    where $A$ and $B$ are some separated sets in $X$. Observe that
+    since $E$ is a connected subset of $X$, we have by Theorem 9.4
+    that $E \subset A$ or $E \subset B$. Without loss of generality
+    suppose $E \subset A$. Then since each $C_\alpha$ is a connected
+    subset of $A \cup B$, Theorem 9.4 implies that 
+    $C_\alpha \subset B$ for at least one
+    $\alpha \in \lambda$. However, this is a contradiction since $E
+    \cap C_\alpha \ne \emptyset$ for all $\alpha \in \lambda$, while
+    $A \cap B = \emptyset.$ Therefore, we must have that 
+    $E \cup (\bigcup\limits_{\alpha \in \lambda})$ is connected. 
+\end{proof}
+
+\begin{problem}[Theorem 9.6]
+    Let $C$ be a connected subset of the topological space $X$. If $D$
+    is a subset of $X$ such that $C \subset D \subset \overline{C}$,
+    then $D$ is connected.
+\end{problem}
+
+\begin{proof}
+    Suppose that $C$ is a connected subset of $X$ and for the sake of
+    contradiction that $D$ such that $C \subset D \subset 
+    \overline{C}$ is not connected. Then there exists disjoint open
+    sets $A$ and $B$ such that $A \cup B = D$. 
+    Since $C$ is connected, we know by Theorem 9.5 that $C \cap A  =
+    \emptyset$ or $C \cap B = \emptyset$. Without loss of generality,
+    suppose that $C \cap A = \emptyset$. Then this is a contradiction
+    since $A \subset D \subset \overline{C}$. Therefore, we must have
+    that $D$ is connected. 
+\end{proof}  
+
+\begin{problem}[Theorem 9.8]
+    Let $X$ be a topological space, $C$ a connected subset of $X$, and
+    $X - C = A\big| B$. Then $A \cup C$ and $B \cup C$ are each
+    connected 
+\end{problem}
+
+\begin{proof}
+    Suppose that $X - C = A \cup B$ where $A$ and $B$ are separated.
+    Now suppose that $A \cup C$ is not connected, so that 
+    $A \cap C = U \cup V$ where $U, V$ are open. Now suppose that 
+    $U \cap C \ne \emptyset$ and $V \cap C \ne \emptyset$. Then $(U
+    \cap C) \cup (V \cap C) = A \cap C$ 
+\end{proof}
+
+\noindent
+\textbf{Presented in class 4/3/19}\\
+\begin{problem}[Theorem 9.12]
+    Let $f: X \to Y$ be a continuous, surjective function. If $X$ is
+    connected, then $Y$ is connected. 
+\end{problem}
+
+\begin{proof}
+    Suppose $f: X \to Y$ is a continuous, surjective function. We can
+    do proof by contradiction. Suppose $X$ is connected but
+    $Y$ is not connected. By Theorem 9.1 part 5, there exists a set $V
+    \subset Y$, $V \ne \emptyset$ $V \ne Y$, such
+    that $V$ is open and closed in $Y$. By continuity, $f^{-1}(V)$
+    is both open and closed in $X$, and by surjectivity, $f^{-1}(V)$
+    is a proper subset of $X$. Thus $X$ has an open and closed set,
+    one which is not $\emptyset$ or $X$, which contradicts the fact that
+    $X$ is not connected by
+    Theorem 9.1 part 5. Thus if $X$ is connected, $Y$
+    is connected, as desired.
+\end{proof}
+
+\begin{problem}[Theorem 9.13] (Intermediate Value Theorem!)
+    Let $f: \mathbb{R}_{\text{std}} \to \mathbb{R}_{\text{std}}$ be a
+    continuous map. If $a, b \in \mathbb{R}$ and $r$ is a point of
+    $\mathbb{R}$ such that $f(a) < r < f(b)$ then there exists a point
+    $c$ in $(a, b)$ such that $f(c) = r$
+    
+\end{problem}
+
+\begin{proof}
+    Observe that $\mathbb{R}_{\text{std}}$ is connected. Since $f:
+    \mathbb{R}_{\text{std}} \to \mathbb{R}_{\text{std}}$, connected
+    should be preserved.
+    \\
+    \\
+    Suppose there does not exist a point $c \in (a, b)$ such
+    that $f(c) = r$. Then $f(x) < r$ or $r < f(x)$ for all $x \in (a,
+    b)$. However since $f(\mathbb{R}) = \mathbb{R}$, 
+    this implies that $\mathbb{R}_{\text{std}}$ is not
+    connected, which contradicts the fact that $\mathbb{R}_\text{std}$
+    is connected. Therefore such a $c$ must exist.  
+\end{proof}
+
+\begin{problem}[Theorem 9.18]
+    Each component of $X$ is connected, closed, and not contained in
+    any strictly larger connected subset of $X$.
+\end{problem}
+
+\begin{proof}
+    Consider a component $C = \bigcup\limits_{\alpha \in \lambda}
+    C_\alpha$ of $p$ in $X$, where each $C_\alpha$ is connected and $p \in
+    C_\alpha$ for all $\alpha \in \lambda$.
+    Observe that we can apply Theorem 9.5 to conclude that $C$ is
+    connected, since (1) no member of the union of $C$ is disjoint
+    from any other member (as they all contain $p$) and (2) each
+    member is connected. 
+    \\
+    \\
+    Suppose that $C$ is not closed. Then there is a point $q \not\in C$
+    and an open set $U$ containing $q$ such that $(U - \{q\}) \cap C
+    \ne \emptyset$. 
+
+
+\end{proof}
+
+\begin{problem}[Theorem 9.35]
+    A path connected space is connected.
+\end{problem}
+
+\begin{proof}
+    Suppose $X$ is path connected but not connected. Then there exist
+    two disjoint open subsets $A ,B$ such that $A \cup B = X$. Observe
+    that any point in $A$ cannot be joined together with any point $B$
+    by a path, a contradiction to the path connectivity of $X$. Thus
+    $X$ must be connected. 
+\end{proof}
+
+\begin{problem}[Theorem 9.36]
+    The flea and comb space is connected but not pathwise connected.
+    (The flea and comb space is the union of the topologist's comb and
+    the point (0, 1).)
+\end{problem}
+
+\begin{proof}
+    Let $A$ be the set of the comb space. This is obviously path
+    connected, and so it is connected by Theorem 9.35. Observe now
+    that 
+    \[
+        A \subset A \cup {flea} \subset \overline{A}
+    \]
+    so that $A \cup {flea}$, the flea and comb space, must be
+    connected. 
+\end{proof}
+
+
+
+
+\end{document}
